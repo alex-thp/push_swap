@@ -6,7 +6,7 @@
 /*   By: ade-temm <ade-temm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 14:48:48 by ade-temm          #+#    #+#             */
-/*   Updated: 2021/10/06 17:04:27 by ade-temm         ###   ########.fr       */
+/*   Updated: 2021/10/06 17:45:52 by ade-temm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int		check_values(int a, int b);
 
 /* solve_medium.c */
 
-void	solve_medium_stack(int *a, int	*b, int *size_a, int *size_b);
+int		*solve_medium_stack(int *a, int	*b, int *size_a, int *size_b);
 
 /* solve_big.c */
 
