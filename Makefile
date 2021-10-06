@@ -1,4 +1,4 @@
-SRCS = main.c p.c s.c r.c
+SRCS = main.c p.c s.c r.c tools.c solve_small.c solve_medium.c solve_big.c
 CFLAGS = -Wall -Werror -Wextra
 NAME = push_swap
 INC = push_swap.h
