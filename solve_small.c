@@ -6,7 +6,7 @@
 /*   By: ade-temm <ade-temm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 14:48:22 by ade-temm          #+#    #+#             */
-/*   Updated: 2021/10/07 10:11:22 by ade-temm         ###   ########.fr       */
+/*   Updated: 2021/10/07 10:25:20 by ade-temm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,29 @@ void	solve_small_stack(int *a, int *size)
 	{
 		while(check_if_solved(a, *size) != 0)
 		{
-			i = 0;
-			while(i < 2)
+			if (a[0] > a[1])
 			{
-				if(a[i] > a[i + 1])
+				if (a[0] > a[2])
 				{
-					if(i == 0)
-					{
-						printf("SA\n");
-						sa(a);
-					}
-					else{
-						printf("RRA\n");
-						rra(&a, *size);
-					}
+					printf("RA\n");
+					ra(&a, *size);
 				}
-				i++;
+				else{
+					printf("SA\n");
+					sa(a);
+				}
+			}
+			if (a[1] > a[2])
+			{
+				if(a[1] > a[0])
+				{
+					printf("RRA\n");
+					rra(&a, *size);
+				}
+				else {
+					printf("SA\n");
+					sa(a);
+				}
 			}
 		}
 	}
