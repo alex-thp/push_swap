@@ -6,13 +6,14 @@
 /*   By: ade-temm <ade-temm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 14:48:48 by ade-temm          #+#    #+#             */
-/*   Updated: 2021/10/06 17:45:52 by ade-temm         ###   ########.fr       */
+/*   Updated: 2021/10/13 14:55:15 by ade-temm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
 /* s.c */
 
@@ -40,10 +41,12 @@ int		check_size_of_stack(int stack);
 void	init_stack(int	*a, char **av, int	size_a);
 int		check_if_solved(int	*a, int size_a);
 void	print_stack(int *stack, int size);
+void	print_stack_b(int *stack, int size);
+void	print_both_stack(int *a, int *b, int size_a, int size_b);
 
 /* solve_small.c */
 
-void	solve_small_stack(int *a, int *size);
+void	solve_small_stack(int *a, int *size, int *b, int *size_b);
 int		check_values(int a, int b);
 
 /* solve_medium.c */
@@ -52,4 +55,6 @@ int		*solve_medium_stack(int *a, int	*b, int *size_a, int *size_b);
 
 /* solve_big.c */
 
-void	solve_big_stack(int	*a, int	*b, int *size);
+void	solve_big_stack(int	*a, int	*b, int size);
+int		*simplify_numbers(int *a, int size);
+long	get_number_in_base_two(int num);

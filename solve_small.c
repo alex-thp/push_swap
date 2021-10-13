@@ -6,7 +6,7 @@
 /*   By: ade-temm <ade-temm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 14:48:22 by ade-temm          #+#    #+#             */
-/*   Updated: 2021/10/07 10:28:48 by ade-temm         ###   ########.fr       */
+/*   Updated: 2021/10/13 09:11:05 by ade-temm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int		check_values(int a, int b)
 	return (b - a);
 }
 
-void	solve_small_stack(int *a, int *size)
+void	solve_small_stack(int *a, int *size, int *b, int *size_b)
 {
 	int		i;
 
@@ -32,10 +32,12 @@ void	solve_small_stack(int *a, int *size)
 				{
 					printf("RA\n");
 					ra(&a, *size);
+					print_both_stack(a, b, *size, *size_b);
 				}
 				else{
 					printf("SA\n");
 					sa(a);
+					print_both_stack(a, b, *size, *size_b);
 				}
 			}
 			if (a[1] > a[2])
@@ -44,10 +46,12 @@ void	solve_small_stack(int *a, int *size)
 				{
 					printf("RRA\n");
 					rra(&a, *size);
+					print_both_stack(a, b, *size, *size_b);
 				}
 				else {
 					printf("SA\n");
 					sa(a);
+					print_both_stack(a, b, *size, *size_b);
 				}
 			}
 		}
@@ -58,6 +62,7 @@ void	solve_small_stack(int *a, int *size)
 		{
 			printf("SA\n");
 			sa(a);
+			print_both_stack(a, b, *size, *size_b);
 		}
 	}
 	// {

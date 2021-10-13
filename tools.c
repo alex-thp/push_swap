@@ -6,7 +6,7 @@
 /*   By: ade-temm <ade-temm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 14:48:22 by ade-temm          #+#    #+#             */
-/*   Updated: 2021/10/07 11:00:27 by ade-temm         ###   ########.fr       */
+/*   Updated: 2021/10/13 09:06:29 by ade-temm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,25 @@ void	print_stack(int *stack, int size)
 		printf("%d\n", stack[i]);
 		i++;
 	}
+}
+
+void	print_stack_b(int *stack, int size)
+{
+	int		i;
+
+	i = 0;
+	while (i < size)
+	{
+		printf("                  %d\n", stack[i]);
+		i++;
+	}
+}
+
+void	print_both_stack(int *a, int *b, int size_a, int size_b)
+{
+	printf("Stack A:          ");
+	printf("Stack B:\n");
+	print_stack(a, size_a);
+	print_stack_b(b, size_b);
+	printf("\n");
 }
