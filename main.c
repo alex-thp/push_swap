@@ -6,7 +6,7 @@
 /*   By: ade-temm <ade-temm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 14:48:22 by ade-temm          #+#    #+#             */
-/*   Updated: 2021/10/13 09:56:09 by ade-temm         ###   ########.fr       */
+/*   Updated: 2021/10/13 16:19:32 by ade-temm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ int		main(int ac, char**av)
 	else
 	{
 		printf("solve_big\n");
-		solve_big_stack(a, b, size_a);
+		solve_big_stack(a, b, size_a, size_b);
 	}
 	//printf("ici :%d\n", 5>>2);
 	//printf("size b : %d\n", size_b);
-	//print_stack(b, size_b);
+	print_stack(a, size_a);
 	return (0);
 }
