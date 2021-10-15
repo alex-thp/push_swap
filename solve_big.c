@@ -6,44 +6,11 @@
 /*   By: ade-temm <ade-temm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 14:48:22 by ade-temm          #+#    #+#             */
-/*   Updated: 2021/10/13 16:34:44 by ade-temm         ###   ########.fr       */
+/*   Updated: 2021/10/15 09:47:56 by ade-temm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-int	get_number_in_base_two(int num)
-{
-	char *tmp;
-	int i;
-	int	j;
-	int k;
-
-	tmp = malloc(10000);
-	j = 0;
-	i = 0;
-	while (i < 10000)
-	{
-		tmp[i] = '\0';
-		i++;
-	}
-	i = 0;
-	while (num > 1)
-	{
-		tmp[i] = (num % 2) + 48;
-		num = num / 2;
-		i++;
-	}
-	tmp[i] = num + 48;
-	num = 0;
-	k = 0;
-	while(i >= 0)
-	{
-		k = (k * 10) + ((tmp[i]) - 48);
-		i--;
-	}
-	return (k);
-}
 
 int		*simplify_numbers(int *a, int size)
 {
@@ -62,10 +29,11 @@ int		*simplify_numbers(int *a, int size)
 		tmp = a[i];
 		while (j < size)
 		{
-			if (a[i] > a[j])
+			if (a[i] > a[j] && i != j)
 				count++;
 			j++;
 		}
+		//printf("COUNT = %d\n", count);
 		simplified[i] = count;
 		i++;
 	}
@@ -77,18 +45,30 @@ int		get_max_bytes(int size)
 {
 	int		count;
 
-	count = 1;
-	while(size>>1 != 0)
-	{
-		size = size>>1;
+	count = 0;
+	while (size>>count != 0)
 		count++;
-	}
-	return(count);
+	return (count);
+	// int		count;
+
+	// count = 0;
+	// while(size>>1 != 0)
+	// {
+	// 	size = size>>1;
+	// 	count++;
+	// }
+	// return(count);
 }
 
 
 /*
-for(int j = 0 ; j < size ; ++j)
+int size = a.size();
+int max_num = size - 1; // the biggest number in a is stack_size - 1
+int max_bits = 0; // how many bits for max_num 
+while ((max_num >> max_bits) != 0) ++max_bits;
+for (int i = 0 ; i < max_bits ; ++i) // repeat for max_bits times
+{
+    for(int j = 0 ; j < size ; ++j)
     {
         int num = a.top(); // top number of A
         if ((num >> i)&1 == 1) ra(); 
@@ -100,53 +80,55 @@ for(int j = 0 ; j < size ; ++j)
     while (!b.empty()) pa(); // while stack b is not empty, do pa
     
     // connect numbers done
+}
 */
 
-void	solve_big_stack(int	*a, int	*b, int size, int size_b)
+int	*solve_big_stack(int *a, int *b, int *size, int *size_b)
 {
-	int	max_bytes;
-	int i;
-	int	j;
-	int	num;
-	int	*tmp;
-	int	*tmp_b;
-	int	tmp_size;
-	int	tmp_size_b;
+	int		*tmp;
+	int		i;
+	int		j;
+	int		num;
+	int		stack_size;
 
-	tmp = simplify_numbers(a, size);
-	tmp_b = malloc(1);
-	tmp_size = size;
-	tmp_size_b = size_b;
-	max_bytes = get_max_bytes(size);
+	tmp = simplify_numbers(a, *size);
+	stack_size = *size;
+	// printf("\n|||||||||||");
+	//print_stack(tmp, *size);
+	// printf("|||||||||||\n");
+	// printf("SIZE = %d\n", *size);
 	i = 0;
-	while(check_if_solved(a, size) != 0)
+	while(i < get_max_bytes((stack_size) - 1))
+	{
+		j = 0;
+		while(j < stack_size)
 		{
-		while (i < max_bytes)
-		{
-			j = 0;
-			while(j < size)
+			num = tmp[0];
+			if (tmp[0] >= stack_size)
 			{
-				num = tmp[0];
-				if(((num >> i)&1) == 1)
-				{
-					ra(&a, size);
-					ra(&tmp, tmp_size);
-				}
-				else
-				{
-					//printf("i = %d||||||| %d ||||||||size a : %d ||||||| size b : %d\n",i,max_bytes, size, size_b);
-					pb(&a, &b, &size, &size_b);
-					pb(&tmp, &tmp_b, &tmp_size, &tmp_size_b);
-				}
-				j++;
+				printf("I = %d ||| J = %d ||| TMP[0] = %d, NUM = %d ||| SIZE A = %d ||| SIZE B = %d\n", i, j, tmp[0], num, *size, *size_b);
 			}
-			while(size_b != 0)
+			//printf("NUM = %d  ||| ", num);
+			if(((num >> i) & 1) == 1)
 			{
-				pa(&a, &b, &size, &size_b);
-				pa(&tmp, &tmp_b, &tmp_size, &tmp_size_b);
+				ra(&tmp, *size);
+				//printf("ra\n");
 			}
-			i++;
+			else{
+				//printf("pb\n");
+				//printf("GO TO B : %d ||| size A : %d ||| size B : %d ||| stack size : %d\n\n", tmp[0], *size, *size_b, stack_size);
+				pb(&tmp, &b, size, size_b);
+			}
+			j++;
 		}
+		while(*size_b > 0)
+		{
+			//printf("pa\n");
+			//printf("BACK TO A : %d ||| size A : %d ||| size B : %d\n\n", b[0], *size, *size_b);
+			pa(&tmp, &b, size, size_b);
+		}
+		i++;
 	}
-	return ;
+	//print_stack(tmp, *size);
+	return (tmp);
 }

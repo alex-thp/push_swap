@@ -6,7 +6,7 @@
 /*   By: ade-temm <ade-temm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 14:48:48 by ade-temm          #+#    #+#             */
-/*   Updated: 2021/10/13 16:09:19 by ade-temm         ###   ########.fr       */
+/*   Updated: 2021/10/14 17:38:04 by ade-temm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int		*solve_medium_stack(int *a, int	*b, int *size_a, int *size_b);
 
 /* solve_big.c */
 
-void	solve_big_stack(int	*a, int	*b, int size, int size_b);
+int		*solve_big_stack(int	*a, int	*b, int *size, int *size_b);
 int		*simplify_numbers(int *a, int size);
 int		get_max_bytes(int size);
-int		get_number_in_base_two(int num);

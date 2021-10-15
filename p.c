@@ -6,7 +6,7 @@
 /*   By: ade-temm <ade-temm@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/04 10:33:32 by ade-temm          #+#    #+#             */
-/*   Updated: 2021/10/07 13:01:22 by ade-temm         ###   ########.fr       */
+/*   Updated: 2021/10/14 17:37:16 by ade-temm         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ void	pa(int **a, int **b, int *size_a, int *size_b)
 
 	if (*size_b == 0)
 		return ;
-	a2 = malloc(sizeof(int) * (*size_a + 1));
-	b2 = malloc(sizeof(int) * (*size_b - 1));
-	(*size_a) += 1;
-	(*size_b) -= 1;
+	a2 = malloc(sizeof(int) * (*size_a) + 1);
+	b2 = malloc(sizeof(int) * (*size_b) - 1);
 	i = 0;
 	while (i < *size_a)
 	{
@@ -47,6 +45,8 @@ void	pa(int **a, int **b, int *size_a, int *size_b)
 		free(*b);
 		*b = b2;
 	}
+	(*size_a) += 1;
+	(*size_b) -= 1;
 }
 
 void	pb(int **a, int **b, int *size_a, int *size_b)
@@ -57,10 +57,8 @@ void	pb(int **a, int **b, int *size_a, int *size_b)
 
 	if (*size_a == 0)
 		return ;
-	a2 = malloc(sizeof(int) * (*size_a - 1));
-	b2 = malloc(sizeof(int) * (*size_b + 1));
-	(*size_a) -= 1;
-	(*size_b) += 1;
+	a2 = malloc(sizeof(int) * (*size_a) - 1);
+	b2 = malloc(sizeof(int) * (*size_b) + 1);
 	i = 0;
 	while (i < *size_b)
 	{
@@ -84,4 +82,6 @@ void	pb(int **a, int **b, int *size_a, int *size_b)
 		free(*b);
 		*b = b2;
 	}
+	(*size_a) -= 1;
+	(*size_b) += 1;
 }
